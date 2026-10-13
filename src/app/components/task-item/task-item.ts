@@ -28,7 +28,7 @@ export class TaskItemComponent {
     }
   }
 
-  onDelete() {
-    this.delete.emit(this.task.id);
-  }
+onDelete() {
+  this.delete.emit(this.task.id);
+}
 }

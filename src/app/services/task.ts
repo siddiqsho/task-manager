@@ -11,9 +11,9 @@ export class TaskService {
     return this.tasks;
   }
 
-  deleteTask(id: number): void {
-    this.tasks = this.tasks.filter(t => t.id !== id);
-  }
+deleteTask(id: number): void {
+  this.tasks = this.tasks.filter(t => t.id !== id);
+}
 
   toggleTask(id: number): void {
     this.tasks.forEach(t => {

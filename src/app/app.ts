@@ -22,7 +22,7 @@ export class App {
       isEditing: false
     };
     this.tasks.push(newTask);
-    this.nextId = this.nextId ++;
+    this.nextId++;
   }
 
   deleteTask(id: number) {
