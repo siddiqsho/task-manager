@@ -1,0 +1,25 @@
+<div class="task-item" [class.completed]="task.completed">
+  @if (!task.isEditing) {
+    <span class="task-text">{{ task.title }}</span>
+  } @else {
+    <input type="text" [(ngModel)]="task.title" class="edit-input" (keyup.enter)="onToggleEdit()" />
+  }
+
+  <div class="actions">
+    <button class="btn-action" (click)="onToggleComplete()">
+      ✔
+    </button>
+    
+    <button class="btn-action" (click)="onToggleEdit()">
+      @if (task.isEditing) {
+        <span>💾</span>
+      } @else {
+        <span>✏️</span>
+      }
+    </button>
+
+    <button class="btn-action" (click)="onDelete()">
+      🗑️
+    </button>
+  </div>
+</div>
