@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../models/task';
 
 @Component({
   selector: 'app-task-item',
-  standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './task-item.html',
   styleUrl: './task-item.css'
 })
@@ -15,20 +15,32 @@ export class TaskItemComponent {
   @Output() toggleComplete = new EventEmitter();
   @Output() updateTask = new EventEmitter();
 
+  isEditing = false;
+  editTitle = '';
+
   onToggleComplete() {
     this.toggleComplete.emit(this.task.id);
   }
 
-  onToggleEdit() {
-    if (this.task.isEditing) {
-      this.updateTask.emit(this.task);
-      this.task.isEditing = false;
-    } else {
-      this.task.isEditing = true;
-    }
+  onEdit() {
+    this.editTitle = this.task.title;
+    this.isEditing = true;
   }
 
-onDelete() {
-  this.delete.emit(this.task.id);
-}
+  onSave() {
+    const title = this.editTitle.trim();
+    if (title === '') {
+      return;
+    }
+    this.updateTask.emit({ id: this.task.id, title });
+    this.isEditing = false;
+  }
+
+  onCancel() {
+    this.isEditing = false;
+  }
+
+  onDelete() {
+    this.delete.emit(this.task);
+  }
 }

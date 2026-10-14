@@ -1,9 +1,16 @@
-<div class="task-input-container">
-  <input 
-    type="text" 
-    [(ngModel)]="taskTitle" 
-    placeholder="Enter task description" 
-    (keyup.enter)="onAddTask()"
-  />
-  <button (click)="onAddTask()">Add Task</button>
+<div class="task-input">
+  <div class="field">
+    <span class="plus">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+    </span>
+    <input
+      type="text"
+      [(ngModel)]="taskTitle"
+      placeholder="Введите новую задачу..."
+      (keyup.enter)="onAddTask()"
+    />
+  </div>
+  <button type="button" class="add-btn" (click)="onAddTask()">Добавить</button>
 </div>

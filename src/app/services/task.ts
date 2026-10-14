@@ -1,33 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 import { Task } from '../models/task';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class TaskService {
   tasks: Task[] = [];
+  private nextId = 1;
 
-  getTasks(): Task[] {
-    return this.tasks;
+  addTask(title: string): void {
+    this.tasks.push({
+      id: this.nextId++,
+      title: title.trim(),
+      completed: false,
+      createdAt: new Date()
+    });
   }
-
-deleteTask(id: number): void {
-  this.tasks = this.tasks.filter(t => t.id !== id);
-}
 
   toggleTask(id: number): void {
-    this.tasks.forEach(t => {
-      if (t.id === id) {
-        t.completed = !t.completed;
-      }
-    });
+    const task = this.tasks.find(t => t.id === id);
+    if (task) {
+      task.completed = !task.completed;
+    }
   }
 
-  updateTask(task: Task): void {
-    this.tasks.forEach(t => {
-      if (t.id === task.id) {
-        t.title = task.title;
-      }
-    });
+  updateTask(id: number, title: string): void {
+    const task = this.tasks.find(t => t.id === id);
+    if (task) {
+      task.title = title.trim();
+    }
+  }
+
+  deleteTask(id: number): void {
+    this.tasks = this.tasks.filter(t => t.id !== id);
   }
 }

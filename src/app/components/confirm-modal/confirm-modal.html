@@ -1,0 +1,10 @@
+<div class="backdrop" (click)="cancelled.emit()">
+  <div class="modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+    <h2 class="modal-title">Удаление задачи</h2>
+    <p class="modal-text">{{ message }}</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-cancel" (click)="cancelled.emit()">Отмена</button>
+      <button type="button" class="btn btn-delete" (click)="confirmed.emit()">Удалить</button>
+    </div>
+  </div>
+</div>
