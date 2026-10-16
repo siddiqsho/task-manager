@@ -133,14 +133,30 @@
   .task-item {
     flex-wrap: wrap;
     gap: 12px;
+    padding: 12px;
   }
 
   .content {
-    flex-basis: calc(100% - 40px);
+    flex: 1 1 calc(100% - 40px);
   }
 
   .actions {
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .text-btn {
+    flex: 1;
+    height: 44px;
+  }
+
+  .edit-input {
+    height: 44px;
+    font-size: 16px;
   }
 }
